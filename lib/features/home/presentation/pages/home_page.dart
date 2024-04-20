@@ -9,6 +9,7 @@ import "package:flutter_clean_architecture/core/utils/utils.dart";
 import "package:flutter_clean_architecture/core/widgets/custom_cached_network_image.dart";
 import "package:flutter_clean_architecture/core/widgets/inputs/custom_text_field.dart";
 import "package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart";
+import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/hourly_report.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:go_router/go_router.dart";
 
@@ -53,9 +54,7 @@ class _HomePageState extends State<HomePage> {
           },
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) => state.status.switchStatus(
-              onPure: () => context
-                  .read<HomeBloc>()
-                  .add(GetForecast()),
+              onPure: () => context.read<HomeBloc>().add(GetForecast()),
               onSuccess: () => _successContent(state.forecastModel!),
               onLoading: () => Center(child: CircularProgressIndicator()),
               onFail: () => Text('${state.message}'),
@@ -65,46 +64,62 @@ class _HomePageState extends State<HomePage> {
       );
 
   Widget _successContent(CurrentAndForecastModel model) {
-    return Padding(
-      padding: AppUtils.kPaddingHor16Ver4,
-      child: CustomScrollView(
-        slivers: [
-          SliverList.list(
-            children: [
-              Row(
+    return CustomScrollView(
+      slivers: [
+        SliverList.list(
+          children: [
+            Padding(
+              padding: AppUtils.kPaddingHor16,
+              child: Row(
                 children: [
                   Expanded(
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${model.current?.temp ?? ''}' + '\u00B0',
-                            style: context.textStyle.bodyTitle1,
-                          ),
-                          Text(
-                            '${model.current?.weather?.first.main ?? ''}',
-                            style: context.textStyle.bodyTitle2,
-                          ),
-                          AppUtils.kGap16,
-                          Text(
-                            (model.timezone ?? '')
-                                .split('/')
-                                .last
-                                .replaceAll('_', ' '),
-                            style: context.textStyle.bodyBody,
-                          ),
-                        ]),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${model.current?.temp ?? ''}' + '\u00B0',
+                          style: context.textStyle.bodyTitle1,
+                        ),
+                        Text(
+                          '${model.current?.weather?.first.main ?? ''}',
+                          style: context.textStyle.bodyTitle2,
+                        ),
+                        AppUtils.kGap8,
+                        Text(
+                          (model.timezone ?? '')
+                              .split('/')
+                              .last
+                              .replaceAll('_', ' '),
+                          style: context.textStyle.bodyHeadline,
+                        ),
+                        Text(
+                          'Feels like ' + '${model.current?.feelsLike}\u00B0',
+                          style: context.textStyle.bodyCallout,
+                        )
+                      ],
+                    ),
                   ),
-                  CustomCachedNetworkImage(
-                    imageUrl: Urls.image.replaceFirst(
-                        '{id}', model.current?.weather?.first.icon ?? ''),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomCachedNetworkImage(
+                        imageUrl: Urls.image.replaceFirst(
+                            '{id}', model.current?.weather?.first.icon ?? ''),
+                      ),
+                      Text(
+                        '${model.current?.weather?.first.description ?? ''}',
+                        style: context.textStyle.bodyHeadline,
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+            AppUtils.kGap16,
+            WHourlyReport(hours: model.hourly!,),
+          ],
+        ),
+      ],
     );
   }
 }

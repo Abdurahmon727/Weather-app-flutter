@@ -37,7 +37,7 @@ class CitiesPage extends StatelessWidget {
           onPure: () {},
           onLoading: () => Center(child: CircularProgressIndicator()),
           onSuccess: () => _successContent(state.cities!, context),
-          onFail: () => Text(state.message),
+          onFail: () => Center(child: Text(state.message)),
         ),
       ),
     );
