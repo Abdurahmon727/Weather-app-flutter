@@ -19,7 +19,7 @@ import "package:hive/hive.dart";
 import "package:package_info_plus/package_info_plus.dart";
 import "package:path_provider/path_provider.dart";
 
-import "features/home/presentation/bloc/home_bloc.dart";
+import "features/home/presentation/bloc/home/home_bloc.dart";
 
 final GetIt sl = GetIt.instance;
 late Box<dynamic> _box;
@@ -141,7 +141,7 @@ Future<void> init() async {
     ..registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImpl(sl(), sl()),
     )
-    ..registerFactory(() => HomeBloc(sl()));
+    ..registerLazySingleton(() => HomeBloc(sl()));
 }
 
 Future<void> _initHive() async {

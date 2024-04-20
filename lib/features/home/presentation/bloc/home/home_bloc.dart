@@ -2,10 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_clean_architecture/core/either/either.dart';
 import 'package:flutter_clean_architecture/core/error/failure.dart';
+import 'package:flutter_clean_architecture/features/home/data/model/CurrentAndForecastModel.dart';
 import 'package:flutter_clean_architecture/features/home/domain/repository/repository.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../../../core/domain/status.dart';
+import '../../../../../core/domain/status.dart';
 
 part 'home_event.dart';
 
@@ -39,6 +40,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           emit(state.copy(status: Status.fail, message: location.left.message)),
       (right) => emit(state.copy(
         status: Status.success,
+        forecastModel: right,
       )),
     );
   }

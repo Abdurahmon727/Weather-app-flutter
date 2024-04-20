@@ -1,12 +1,9 @@
-
 sealed class Constants {
   Constants._();
 
   static const String baseUrl = "https://api.openweathermap.org";
   static const String apiKey = "6c7ee912b674db54b61d70801f4cc33d";
-
 }
-
 
 sealed class AppKeys {
   AppKeys._();
@@ -23,6 +20,8 @@ sealed class AppKeys {
 
 sealed class Urls {
   Urls._();
+
+  static const image = 'https://openweathermap.org/img/w/{id}.png';
 
   static const String currentAndForecast = "/data/3.0/onecall";
   static const String loginWithOption = "/v2/login/with-option";

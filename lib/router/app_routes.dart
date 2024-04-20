@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_clean_architecture/core/connectivity/network_info.dart";
 import "package:flutter_clean_architecture/core/local_source/local_source.dart";
+import "package:flutter_clean_architecture/features/home/presentation/pages/cities_page.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/home_page.dart";
 import "package:flutter_clean_architecture/features/others/presentation/pages/internet_connection/internet_connection_page.dart";
 import "package:flutter_clean_architecture/features/others/presentation/pages/splash/splash_page.dart";
@@ -10,7 +11,7 @@ import "package:flutter_clean_architecture/injector_container.dart";
 import "package:go_router/go_router.dart";
 import "package:package_info_plus/package_info_plus.dart";
 
-import "../features/home/presentation/bloc/home_bloc.dart";
+import "../features/home/presentation/bloc/home/home_bloc.dart";
 
 part "name_routes.dart";
 
@@ -46,6 +47,20 @@ final GoRouter router = GoRouter(
       builder: (_, __) => BlocProvider(
         create: (_) => sl<HomeBloc>(),
         child: const HomePage(),
+      ),
+    ),
+
+    GoRoute(
+      path: Routes.cities,
+      name: Routes.cities,
+      parentNavigatorKey: rootNavigatorKey,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: BlocProvider(
+          create: (_) => sl<HomeBloc>(),
+          child: const CitiesPage(),
+        ),
       ),
     ),
 
@@ -127,3 +142,16 @@ final GoRouter router = GoRouter(
     // ),
   ],
 );
+
+CustomTransitionPage buildPageWithDefaultTransition<T>({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
+}

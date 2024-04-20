@@ -11,9 +11,9 @@ typedef OnFieldSubmitted = void Function(String);
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.controller,
-    required this.onChanged,
-    required this.focusNode,
-    required this.hintText,
+    this.onChanged,
+    this.focusNode,
+    this.hintText = '',
     super.key,
     this.validator,
     this.textInputType = TextInputType.name,
@@ -39,13 +39,16 @@ class CustomTextField extends StatelessWidget {
     this.contentPadding,
     this.cursorHeight,
     this.onFieldSubmitted,
+    this.readOnly = false,
+    this.onTap,
+    this.autofocus =false,
   });
 
   final TextEditingController controller;
   final Validator? validator;
-  final OnChanged onChanged;
+  final OnChanged? onChanged;
   final TextInputType textInputType;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final FocusNode? nextFocusNode;
   final TextCapitalization textCapitalization;
   final Color? cursorColor;
@@ -69,6 +72,9 @@ class CustomTextField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final double? cursorHeight;
   final OnFieldSubmitted? onFieldSubmitted;
+  final bool readOnly;
+  final VoidCallback? onTap;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -82,6 +88,9 @@ class CustomTextField extends StatelessWidget {
             ),
           if (labelText != null && !labelInTextField) AppUtils.kGap6,
           TextFormField(
+            autofocus: autofocus,
+            onTap: onTap,
+            readOnly: readOnly,
             key: key,
             style: context.textStyle.regularBody,
             controller: controller,
@@ -99,7 +108,7 @@ class CustomTextField extends StatelessWidget {
               if (nextFocusNode != null) {
                 nextFocusNode?.requestFocus();
               } else {
-                focusNode.unfocus();
+                focusNode?.unfocus();
               }
             },
             onFieldSubmitted: (String value) {
@@ -109,13 +118,16 @@ class CustomTextField extends StatelessWidget {
               if (nextFocusNode != null) {
                 nextFocusNode?.requestFocus();
               } else {
-                focusNode.unfocus();
+                focusNode?.unfocus();
               }
             },
             inputFormatters: textInputFormatter != null
                 ? <TextInputFormatter>[textInputFormatter!]
                 : null,
             decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                  borderRadius: BorderRadius.circular(8)),
               labelText: labelInTextField ? labelText : null,
               labelStyle: labelTextStyle,
               hintText: hintText,

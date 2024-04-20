@@ -21,6 +21,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         'lat': lat,
         'lon': lon,
         'appId': Constants.apiKey,
+        'units':'metric'
       },
     );
 

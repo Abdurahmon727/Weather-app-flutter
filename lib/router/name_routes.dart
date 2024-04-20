@@ -12,6 +12,7 @@ sealed class Routes {
 
   /// Home
   static const String home = "/home";
+  static const String cities = "/cities";
 
   /// internet connection
   static const String noInternet = "/no-internet";
