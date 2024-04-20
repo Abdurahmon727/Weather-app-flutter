@@ -20,8 +20,10 @@ class CitiesPage extends StatelessWidget {
         title: CustomTextField(
           autofocus: true,
           contentPadding: AppUtils.kPaddingHor16,
-          onChanged: (val) =>
-              context.read<CitiesBloc>().add(CitiesEventSearch(val)),
+          onChanged: (val) {
+            if (val.isNotEmpty)
+              context.read<CitiesBloc>().add(CitiesEventSearch(val));
+          },
           controller: TextEditingController(),
           hintText: 'city',
         ),
