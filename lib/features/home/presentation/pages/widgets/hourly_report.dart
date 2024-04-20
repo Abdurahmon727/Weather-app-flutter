@@ -11,12 +11,11 @@ class WHourlyReport extends StatelessWidget {
   final List<Hourly> hours;
 
   @override
-  Widget build(BuildContext context) =>
-      Column(
+  Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding:AppUtils.kPaddingHor16,
+            padding: AppUtils.kPaddingHor16,
             child: Text('Hourly report'),
           ),
           AppUtils.kGap8,
@@ -26,25 +25,27 @@ class WHourlyReport extends StatelessWidget {
               padding: AppUtils.kPaddingHor16,
               scrollDirection: Axis.horizontal,
               itemCount: hours.length,
-              itemBuilder: (_, index) =>
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: AppUtils.kBorderRadius12,
-                      color: Colors.blue,
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                    child: Column(
-                      children: [
-                        CustomCachedNetworkImage(
-                          imageUrl: Urls.image.replaceFirst(
-                              '{id}', hours[index].weather?.first.icon ?? ''),
-                        ),
-                        Text(hours[index].weather?.first.main ?? ''),
-                        Text('${hours[index].temp ?? ''}\u00B0'),
-
-                      ],
-                    ),
+              itemBuilder: (_, index) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: AppUtils.kBorderRadius12,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.blue, Colors.blue.shade300],
                   ),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                child: Column(
+                  children: [
+                    CustomCachedNetworkImage(
+                      imageUrl: Urls.image.replaceFirst(
+                          '{id}', hours[index].weather?.first.icon ?? ''),
+                    ),
+                    Text(hours[index].weather?.first.main ?? ''),
+                    Text('${hours[index].temp ?? ''}\u00B0'),
+                  ],
+                ),
+              ),
               separatorBuilder: (_, __) => AppUtils.kGap8,
             ),
           )
