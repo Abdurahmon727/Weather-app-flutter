@@ -12,22 +12,6 @@ sealed class Routes {
 
   /// Home
   static const String home = "/home";
-  static const String story = "/story";
-
-  /// TV
-  static const String tv = "/tv";
-
-  /// Catalog
-  static const String catalog = "/catalog";
-
-  /// Favorites
-  static const String favorites = "/favorites";
-
-  /// Profile
-  static const String profile = "/profile";
-  static const String settings = "/settings";
-  static const String devices = "/devices";
-  static const String aboutUs = "/about-us";
 
   /// internet connection
   static const String noInternet = "/no-internet";

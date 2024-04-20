@@ -9,10 +9,6 @@ import "package:dio_retry_plus/dio_retry_plus.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_clean_architecture/core/connectivity/network_info.dart";
 import "package:flutter_clean_architecture/core/local_source/local_source.dart";
-import "package:flutter_clean_architecture/features/auth/domain/repository/auth_repository.dart";
-import "package:flutter_clean_architecture/features/auth/presentation/bloc/confirm/confirm_code_bloc.dart";
-import "package:flutter_clean_architecture/features/auth/presentation/bloc/login/auth_bloc.dart";
-import "package:flutter_clean_architecture/features/main/presentation/bloc/main_bloc.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:get_it/get_it.dart";
 import "package:go_router/go_router.dart";
@@ -127,26 +123,11 @@ Future<void> init() async {
       ),
     )
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)
-    ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()))
+    ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
-    /// main
-    ..registerFactory(MainBloc.new);
 
-  /// features
-  _authFeature();
 }
 
-void _authFeature() {
-  /// use cases
-  sl
-
-    /// repositories
-    ..registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(dio: sl()))
-
-    /// bloc
-    ..registerFactory(() => AuthBloc(authRepository: sl()))
-    ..registerFactory(() => ConfirmCodeBloc(sl()));
-}
 
 Future<void> _initHive() async {
   const String boxName = "flutter_clean_architecture_box";
