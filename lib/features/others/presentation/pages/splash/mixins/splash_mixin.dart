@@ -7,18 +7,9 @@ mixin SplashMixin on State<SplashPage> {
     if (!mounted) {
       return;
     }
-    // ignore: discarded_futures
-    RemoteConfigService.isCallCheckAppVersion(context).then(
-      ((AppUpdate, String, String) value) async {
-        if (value.$1 != AppUpdate.none) {
-          await appUpdateBottomSheet(
-            isForceUpdate: value.$1 == AppUpdate.forceUpdate,
-          ).then((_) => nextToNavigation());
-        } else {
-          nextToNavigation();
-        }
-      },
-    );
+
+    Future.delayed(const Duration(seconds: 2))
+        .then((value) => nextToNavigation());
   }
 
   void nextToNavigation() {

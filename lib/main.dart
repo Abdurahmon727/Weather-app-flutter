@@ -10,15 +10,11 @@ import "package:flutter_clean_architecture/core/utils/utils.dart";
 import "package:flutter_clean_architecture/core/widgets/native_splash/flutter_native_splash.dart";
 import "package:flutter_clean_architecture/injector_container.dart" as di;
 import "package:flutter_clean_architecture/router/app_routes.dart";
-import "package:flutter_clean_architecture/services/notification_service.dart";
 
 void main() async {
   /// flutter_native_splash
   final WidgetsBinding binding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: binding);
-
-  /// notification initialize
-  await NotificationService.initialize();
 
   /// bloc logger
   if (kDebugMode) {
