@@ -2,17 +2,11 @@ import "dart:async";
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:flutter_clean_architecture/constants/constants.dart";
 import "package:flutter_clean_architecture/core/extension/extension.dart";
 import "package:flutter_clean_architecture/core/theme/themes.dart";
-import "package:flutter_clean_architecture/core/widgets/bottom_sheet/custom_bottom_sheet.dart";
-import "package:flutter_clean_architecture/core/widgets/bottom_sheet/update_app_sheet.dart";
 import "package:flutter_clean_architecture/core/widgets/loading/circular_progress_indicator.dart";
-import "package:flutter_clean_architecture/core/widgets/painter/logo_painter.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
-import "package:flutter_clean_architecture/services/remote_config_service.dart";
 import "package:go_router/go_router.dart";
-import "package:url_launcher/url_launcher.dart";
 
 part "mixins/splash_mixin.dart";
 
@@ -39,7 +33,15 @@ class _SplashPageState extends State<SplashPage> with SplashMixin {
                   child: CustomCircularProgressIndicator(),
                 ),
               ),
-              const Positioned.fill(child: Center(child: Logo(size: 25))),
+              const Positioned.fill(
+                child: Center(
+                  child: Icon(
+                    Icons.sunny,
+                    size: 100,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

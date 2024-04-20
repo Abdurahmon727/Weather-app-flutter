@@ -51,6 +51,10 @@ dependencies:
   firebase_remote_config: ^4.4.0
   # local notification
   flutter_local_notifications: ^17.0.0
+  # location
+  geolocator: ^11.0.0
+
+
 
 dev_dependencies:
   bloc_test: ^9.1.7

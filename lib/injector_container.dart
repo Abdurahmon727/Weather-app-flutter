@@ -9,12 +9,17 @@ import "package:dio_retry_plus/dio_retry_plus.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_clean_architecture/core/connectivity/network_info.dart";
 import "package:flutter_clean_architecture/core/local_source/local_source.dart";
+import "package:flutter_clean_architecture/features/home/data/data_source/remote_data_source.dart";
+import "package:flutter_clean_architecture/features/home/data/repository/repository_impl.dart";
+import "package:flutter_clean_architecture/features/home/domain/repository/repository.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:get_it/get_it.dart";
 import "package:go_router/go_router.dart";
 import "package:hive/hive.dart";
 import "package:package_info_plus/package_info_plus.dart";
 import "package:path_provider/path_provider.dart";
+
+import "features/home/presentation/bloc/home_bloc.dart";
 
 final GetIt sl = GetIt.instance;
 late Box<dynamic> _box;
@@ -125,9 +130,19 @@ Future<void> init() async {
     ..registerSingletonAsync<PackageInfo>(PackageInfo.fromPlatform)
     ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
+  /// features:
+  /// home
+  ///
 
+  sl
+    ..registerLazySingleton<HomeRemoteDataSource>(
+      () => HomeRemoteDataSourceImpl(sl()),
+    )
+    ..registerLazySingleton<HomeRepository>(
+      () => HomeRepositoryImpl(sl(), sl()),
+    )
+    ..registerFactory(() => HomeBloc(sl()));
 }
-
 
 Future<void> _initHive() async {
   const String boxName = "flutter_clean_architecture_box";

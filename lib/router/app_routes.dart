@@ -1,5 +1,6 @@
 import "package:chuck_interceptor/chuck.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_clean_architecture/core/connectivity/network_info.dart";
 import "package:flutter_clean_architecture/core/local_source/local_source.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/home_page.dart";
@@ -8,6 +9,8 @@ import "package:flutter_clean_architecture/features/others/presentation/pages/sp
 import "package:flutter_clean_architecture/injector_container.dart";
 import "package:go_router/go_router.dart";
 import "package:package_info_plus/package_info_plus.dart";
+
+import "../features/home/presentation/bloc/home_bloc.dart";
 
 part "name_routes.dart";
 
@@ -40,9 +43,11 @@ final GoRouter router = GoRouter(
       path: Routes.home,
       name: Routes.home,
       parentNavigatorKey: rootNavigatorKey,
-      builder: (_, __) => const HomePage(),
+      builder: (_, __) => BlocProvider(
+        create: (_) => sl<HomeBloc>(),
+        child: const HomePage(),
+      ),
     ),
-
 
     // StatefulShellRoute.indexedStack(
     //   parentNavigatorKey: rootNavigatorKey,
@@ -120,7 +125,5 @@ final GoRouter router = GoRouter(
     //   parentNavigatorKey: rootNavigatorKey,
     //   builder: (_, __) => const StoryPage(),
     // ),
-
-
   ],
 );

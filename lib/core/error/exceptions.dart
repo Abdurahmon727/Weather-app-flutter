@@ -4,6 +4,7 @@ class ServerException implements Exception {
   factory ServerException.fromJson(Map<String, dynamic> json) =>
       ServerException(message: json["detail"]);
   final String message;
+
 }
 
 class NoInternetException implements Exception {

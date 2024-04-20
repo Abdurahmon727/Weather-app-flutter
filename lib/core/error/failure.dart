@@ -22,10 +22,14 @@ class ServerFailure extends Failure {
 }
 
 class NoInternetFailure extends Failure {
-  const NoInternetFailure({required super.message});
+  const NoInternetFailure({ super.message = 'No internet'});
 
   @override
   List<Object?> get props => <Object?>[];
+}
+
+class LocationNotPermitted extends Failure {
+  LocationNotPermitted({super.message = 'No granted location'});
 }
 
 class CacheFailure extends Failure {

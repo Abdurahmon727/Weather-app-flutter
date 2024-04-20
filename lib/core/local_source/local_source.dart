@@ -61,6 +61,12 @@ final class LocalSource {
 
   String? get password => box.get(AppKeys.password);
 
+  Future<void> setCache(String key, String value) async {
+    await box.put(key, value);
+  }
+
+  String getCache(String key) => box.get(key, defaultValue: '');
+
   Future<void> clear() async {
     await box.clear();
   }
