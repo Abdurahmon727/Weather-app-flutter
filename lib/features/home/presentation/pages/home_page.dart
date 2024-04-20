@@ -8,7 +8,7 @@ import "package:flutter_clean_architecture/core/extension/extension.dart";
 import "package:flutter_clean_architecture/core/utils/utils.dart";
 import "package:flutter_clean_architecture/core/widgets/custom_cached_network_image.dart";
 import "package:flutter_clean_architecture/core/widgets/inputs/custom_text_field.dart";
-import "package:flutter_clean_architecture/features/home/data/model/CurrentAndForecastModel.dart";
+import "package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:go_router/go_router.dart";
 
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
           ),
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(12),
-            child: SizedBox.shrink(),
+            child: AppUtils.kGap,
           ),
           // actions: <Widget>[
           //   IconButton(
@@ -48,14 +48,14 @@ class _HomePageState extends State<HomePage> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            context.read<HomeBloc>().add(HomeEventGetForecastCurrentPosition());
+            context.read<HomeBloc>().add(GetForecast());
             await Future.delayed(Duration(seconds: 1));
           },
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) => state.status.switchStatus(
               onPure: () => context
                   .read<HomeBloc>()
-                  .add(HomeEventGetForecastCurrentPosition()),
+                  .add(GetForecast()),
               onSuccess: () => _successContent(state.forecastModel!),
               onLoading: () => Center(child: CircularProgressIndicator()),
               onFail: () => Text('${state.message}'),

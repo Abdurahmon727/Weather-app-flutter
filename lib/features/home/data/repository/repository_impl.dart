@@ -6,8 +6,9 @@ import 'package:flutter_clean_architecture/core/error/exceptions.dart';
 
 import 'package:flutter_clean_architecture/core/error/failure.dart';
 import 'package:flutter_clean_architecture/features/home/data/data_source/remote_data_source.dart';
+import 'package:flutter_clean_architecture/features/home/data/model/city_model.dart';
 
-import 'package:flutter_clean_architecture/features/home/data/model/CurrentAndForecastModel.dart';
+import 'package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart';
 import 'package:flutter_clean_architecture/router/app_routes.dart';
 
 import '../../../../constants/constants.dart';
@@ -44,6 +45,23 @@ class HomeRepositoryImpl implements HomeRepository {
       return Right(
         CurrentAndForecastModel.fromJson(jsonDecode(cache)),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<CityModel>>> searchCity(String query) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final data = await _remoteDataSource.searchCity(query);
+        return Right(data);
+      } catch (e) {
+        debugPrint('Error on fetching ${Urls.geoSearch}: $e');
+        if (e is ServerException)
+          return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(message: 'Something went wrong'));
+      }
+    } else {
+      return Left(NoInternetFailure());
     }
   }
 }

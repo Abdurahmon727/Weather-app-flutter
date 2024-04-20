@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_clean_architecture/core/connectivity/network_info.dart";
 import "package:flutter_clean_architecture/core/local_source/local_source.dart";
+import "package:flutter_clean_architecture/features/home/presentation/bloc/cities/cities_bloc.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/cities_page.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/home_page.dart";
 import "package:flutter_clean_architecture/features/others/presentation/pages/internet_connection/internet_connection_page.dart";
@@ -57,8 +58,11 @@ final GoRouter router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: BlocProvider(
-          create: (_) => sl<HomeBloc>(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider.value(value: sl<HomeBloc>()),
+            BlocProvider(create: (_) => sl<CitiesBloc>())
+          ],
           child: const CitiesPage(),
         ),
       ),

@@ -24,6 +24,7 @@ sealed class Urls {
   static const image = 'https://openweathermap.org/img/w/{id}.png';
 
   static const String currentAndForecast = "/data/3.0/onecall";
+  static const String geoSearch =  '/geo/1.0/direct';
   static const String loginWithOption = "/v2/login/with-option";
   static const String register = "/v2/register";
 

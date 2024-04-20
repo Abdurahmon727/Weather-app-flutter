@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_clean_architecture/core/either/either.dart';
 import 'package:flutter_clean_architecture/core/error/failure.dart';
-import 'package:flutter_clean_architecture/features/home/data/model/CurrentAndForecastModel.dart';
+import 'package:flutter_clean_architecture/features/home/data/model/city_model.dart';
+import 'package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart';
 import 'package:flutter_clean_architecture/features/home/domain/repository/repository.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -16,14 +17,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository repository;
 
   HomeBloc(this.repository) : super(HomeState()) {
-    on<HomeEventGetForecastCurrentPosition>(_onGetForecast);
+    on<GetForecast>(_onGetForecast);
+    on<SetCity>(_setCity);
   }
 
   Future<void> _onGetForecast(
-    HomeEventGetForecastCurrentPosition event,
+    GetForecast event,
     Emitter<HomeState> emit,
   ) async {
     emit(state.copy(status: Status.loading));
+
+    if (state.city != null) {
+      final city = state.city!;
+      final data = await repository.getCurrentAndForecast(
+          (city.lat ?? 0).toDouble(), (city.lon ?? 0).toDouble());
+
+      data.fold(
+        (left) => emit(state.copy(status: Status.fail, message: left.message)),
+        (right) => emit(state.copy(
+          status: Status.success,
+          forecastModel: right,
+        )),
+      );
+
+      return;
+    }
 
     final location = await _determinePosition();
     if (location.isLeft) {
@@ -36,13 +54,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         position.latitude, position.longitude);
 
     data.fold(
-      (left) =>
-          emit(state.copy(status: Status.fail, message: location.left.message)),
+      (left) => emit(state.copy(status: Status.fail, message: left.message)),
       (right) => emit(state.copy(
         status: Status.success,
         forecastModel: right,
       )),
     );
+  }
+
+  Future<void> _setCity(
+    SetCity event,
+    Emitter<HomeState> emit,
+  ) async {
+    emit(state.copy(city: event.city));
+
+    await _onGetForecast(GetForecast(), emit);
   }
 
   Future<Either<Failure, Position>> _determinePosition() async {

@@ -12,6 +12,7 @@ import "package:flutter_clean_architecture/core/local_source/local_source.dart";
 import "package:flutter_clean_architecture/features/home/data/data_source/remote_data_source.dart";
 import "package:flutter_clean_architecture/features/home/data/repository/repository_impl.dart";
 import "package:flutter_clean_architecture/features/home/domain/repository/repository.dart";
+import "package:flutter_clean_architecture/features/home/presentation/bloc/cities/cities_bloc.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:get_it/get_it.dart";
 import "package:go_router/go_router.dart";
@@ -141,7 +142,8 @@ Future<void> init() async {
     ..registerLazySingleton<HomeRepository>(
       () => HomeRepositoryImpl(sl(), sl()),
     )
-    ..registerLazySingleton(() => HomeBloc(sl()));
+    ..registerLazySingleton(() => HomeBloc(sl()))
+    ..registerFactory(() => CitiesBloc(sl()));
 }
 
 Future<void> _initHive() async {
