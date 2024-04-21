@@ -37,10 +37,6 @@ class _HomePageState extends State<HomePage> {
             focusNode: FocusNode(),
             hintText: context.tr('city'),
           ),
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(12),
-            child: AppUtils.kGap,
-          ),
           // actions: <Widget>[
           //   IconButton(
           //     icon: Icon(Icons.sunny),

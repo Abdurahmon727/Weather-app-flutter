@@ -24,7 +24,7 @@ class WHourlyReport extends StatelessWidget {
           ),
           AppUtils.kGap8,
           SizedBox(
-            height: 135,
+            height: 140,
             child: ListView.separated(
               padding: AppUtils.kPaddingHor16,
               scrollDirection: Axis.horizontal,
@@ -56,7 +56,7 @@ class WHourlyReport extends StatelessWidget {
                       AppUtils.kSpacer,
                       Text(
                         '${hours[index].dt!.toHour()}',
-                        style: context.textStyle.regularBody,
+                        style: context.textStyle.bodySubheadline,
                       )
                     ],
                   ),

@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/core/extension/extension.dart';
 import 'package:flutter_clean_architecture/core/utils/utils.dart';
 import 'package:flutter_clean_architecture/core/widgets/bottom_sheet/custom_bottom_sheet.dart';
-import 'package:flutter_clean_architecture/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -27,8 +24,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Drawer(
+  Widget build(BuildContext context) => Drawer(
         child: SafeArea(
           child: Padding(
             padding: AppUtils.kPaddingHor16Ver4,

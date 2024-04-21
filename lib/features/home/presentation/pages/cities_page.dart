@@ -28,10 +28,6 @@ class CitiesPage extends StatelessWidget {
           controller: TextEditingController(),
           hintText: context.tr('city'),
         ),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(12),
-          child: SizedBox.shrink(),
-        ),
       ),
       body: BlocBuilder<CitiesBloc, CitiesState>(
         builder: (context, state) => state.status.switchStatus(

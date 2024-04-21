@@ -22,7 +22,7 @@ class WDailyReport extends StatelessWidget {
           ),
           AppUtils.kGap8,
           SizedBox(
-            height: 135,
+            height: 140,
             child: ListView.separated(
               padding: AppUtils.kPaddingHor16,
               scrollDirection: Axis.horizontal,
@@ -56,7 +56,7 @@ class WDailyReport extends StatelessWidget {
                         AppUtils.kSpacer,
                         Text(
                           '${day.dt!.toDay(context.locale.languageCode)}',
-                          style: context.textStyle.regularBody,
+                          style: context.textStyle.bodySubheadline,
                         )
                       ],
                     ),
