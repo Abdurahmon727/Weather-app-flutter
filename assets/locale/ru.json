@@ -3,5 +3,7 @@
   "hourly_report": "Ежечасный отчет",
   "daily_report": "Ежедневный отчет",
   "feels_like_%d": "По ощущениям %d",
-  "choose_language": "Выберите язык"
+  "choose_language": "Выберите язык",
+  "app_language": "Язык приложения",
+  "theme": "Тема приложения"
 }

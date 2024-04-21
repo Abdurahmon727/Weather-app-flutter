@@ -3,5 +3,7 @@
   "hourly_report": "Hourly report",
   "daily_report": "Daily report",
   "feels_like_%d": "Feels like %d",
-  "choose_language": "Choose language"
+  "choose_language": "Choose language",
+  "app_language": "App language",
+  "theme": "App theme"
 }
