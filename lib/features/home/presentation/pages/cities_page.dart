@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/domain/status.dart';
+import 'package:flutter_clean_architecture/core/extension/extension.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/city_model.dart';
 import 'package:flutter_clean_architecture/features/home/presentation/pages/widgets/w_city.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +26,7 @@ class CitiesPage extends StatelessWidget {
               context.read<CitiesBloc>().add(CitiesEventSearch(val));
           },
           controller: TextEditingController(),
-          hintText: 'city',
+          hintText: context.tr('city'),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(12),

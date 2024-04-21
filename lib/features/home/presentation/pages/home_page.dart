@@ -1,6 +1,4 @@
-import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_clean_architecture/constants/constants.dart";
 import "package:flutter_clean_architecture/core/domain/status.dart";
@@ -10,6 +8,7 @@ import "package:flutter_clean_architecture/core/widgets/custom_cached_network_im
 import "package:flutter_clean_architecture/core/widgets/inputs/custom_text_field.dart";
 import "package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/daily_report.dart";
+import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/home_drawer.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/hourly_report.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:go_router/go_router.dart";
@@ -26,6 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
+        drawer: HomeDrawer(),
         appBar: AppBar(
           centerTitle: false,
           title: CustomTextField(
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             onChanged: (val) {},
             controller: TextEditingController(),
             focusNode: FocusNode(),
-            hintText: 'city',
+            hintText: context.tr('city'),
           ),
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(12),
@@ -94,7 +94,8 @@ class _HomePageState extends State<HomePage> {
                           style: context.textStyle.bodyHeadline,
                         ),
                         Text(
-                          'Feels like ' + '${model.current?.feelsLike}\u00B0',
+                          context.tr('feels_like_%d').replaceFirst(
+                              '%d', '${model.current?.feelsLike}\u00B0'),
                           style: context.textStyle.bodyCallout,
                         )
                       ],

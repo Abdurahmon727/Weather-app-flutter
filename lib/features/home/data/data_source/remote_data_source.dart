@@ -1,10 +1,10 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter_clean_architecture/constants/constants.dart';
 import 'package:flutter_clean_architecture/core/error/exceptions.dart';
 import 'package:flutter_clean_architecture/core/extension/status_code.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/city_model.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart';
+import 'package:flutter_clean_architecture/router/app_routes.dart';
 
 abstract class HomeRemoteDataSource {
   Future<CurrentAndForecastModel> getForecast(double lat, double lon);
@@ -25,7 +25,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         'lat': lat,
         'lon': lon,
         'appId': Constants.apiKey,
-        'units': 'metric'
+        'units': 'metric',
+        'lang': localSource.locale,
       },
     );
 
@@ -42,7 +43,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       Constants.baseUrl + Urls.geoSearch,
       queryParameters: {
         'q': query,
-        'limit':20,
+        'limit': 20,
         'appId': Constants.apiKey,
       },
     );

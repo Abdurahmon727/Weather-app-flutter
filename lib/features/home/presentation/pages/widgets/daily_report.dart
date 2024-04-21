@@ -18,7 +18,7 @@ class WDailyReport extends StatelessWidget {
         children: [
           Padding(
             padding: AppUtils.kPaddingHor16,
-            child: Text('Daily report'),
+            child: Text(context.tr('daily_report')),
           ),
           AppUtils.kGap8,
           SizedBox(

@@ -1,3 +1,7 @@
 {
-  "settings": "Settings"
+  "city": "City",
+  "hourly_report": "Hourly report",
+  "daily_report": "Daily report",
+  "feels_like_%d": "Feels like %d"
+
 }
