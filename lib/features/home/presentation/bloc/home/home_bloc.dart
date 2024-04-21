@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_clean_architecture/core/either/either.dart';
@@ -5,8 +7,10 @@ import 'package:flutter_clean_architecture/core/error/failure.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/city_model.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart';
 import 'package:flutter_clean_architecture/features/home/domain/repository/repository.dart';
+import 'package:flutter_clean_architecture/router/app_routes.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../../constants/constants.dart';
 import '../../../../../core/domain/status.dart';
 
 part 'home_event.dart';
@@ -17,8 +21,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository repository;
 
   HomeBloc(this.repository) : super(HomeState()) {
+    on<Init>(_init);
     on<GetForecast>(_onGetForecast);
     on<SetCity>(_setCity);
+  }
+
+  Future<void> _init(
+    Init event,
+    Emitter<HomeState> emit,
+  ) async {
+    final cachedCity = await localSource.getCache(AppKeys.city);
+    if (cachedCity.isNotEmpty) {
+      emit(
+        state.copy(city: CityModel.fromJson(jsonDecode(cachedCity))),
+      );
+    }
+    await _onGetForecast(GetForecast(), emit);
   }
 
   Future<void> _onGetForecast(
@@ -55,10 +73,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     data.fold(
       (left) => emit(state.copy(status: Status.fail, message: left.message)),
-      (right) => emit(state.copy(
-        status: Status.success,
-        forecastModel: right,
-      )),
+      (right) => emit(
+        state.copy(
+          status: Status.success,
+          forecastModel: right,
+        ),
+      ),
     );
   }
 
@@ -67,7 +87,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     Emitter<HomeState> emit,
   ) async {
     emit(state.copy(city: event.city));
-
+    await localSource.setCache(AppKeys.city, jsonEncode(event.city));
     await _onGetForecast(GetForecast(), emit);
   }
 

@@ -27,33 +27,37 @@ class WHourlyReport extends StatelessWidget {
               padding: AppUtils.kPaddingHor16,
               scrollDirection: Axis.horizontal,
               itemCount: hours.length,
-              itemBuilder: (_, index) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: AppUtils.kBorderRadius12,
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.blue, Colors.blue.shade300],
+              itemBuilder: (_, index) => InkWell(
+                onTap: () {},
+                borderRadius: AppUtils.kBorderRadius12,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: AppUtils.kBorderRadius12,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.blue, Colors.blue.shade300],
+                    ),
                   ),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                child: Column(
-                  children: [
-                    CustomCachedNetworkImage(
-                      imageUrl: Urls.image.replaceFirst(
-                          '{id}', hours[index].weather?.first.icon ?? ''),
-                    ),
-                    Text(
-                      hours[index].weather?.first.main ?? '',
-                      style: context.textStyle.regularCallout,
-                    ),
-                    Text('${hours[index].temp ?? ''}\u00B0'),
-                    AppUtils.kSpacer,
-                    Text(
-                      '${hours[index].dt!.toHour()}',
-                      style: context.textStyle.regularBody,
-                    )
-                  ],
+                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                  child: Column(
+                    children: [
+                      CustomCachedNetworkImage(
+                        imageUrl: Urls.image.replaceFirst(
+                            '{id}', hours[index].weather?.first.icon ?? ''),
+                      ),
+                      Text(
+                        hours[index].weather?.first.main ?? '',
+                        style: context.textStyle.regularCallout,
+                      ),
+                      Text('${hours[index].temp ?? ''}\u00B0'),
+                      AppUtils.kSpacer,
+                      Text(
+                        '${hours[index].dt!.toHour()}',
+                        style: context.textStyle.regularBody,
+                      )
+                    ],
+                  ),
                 ),
               ),
               separatorBuilder: (_, __) => AppUtils.kGap8,

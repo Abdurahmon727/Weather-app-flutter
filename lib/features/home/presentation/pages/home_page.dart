@@ -9,6 +9,7 @@ import "package:flutter_clean_architecture/core/utils/utils.dart";
 import "package:flutter_clean_architecture/core/widgets/custom_cached_network_image.dart";
 import "package:flutter_clean_architecture/core/widgets/inputs/custom_text_field.dart";
 import "package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart";
+import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/daily_report.dart";
 import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/hourly_report.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:go_router/go_router.dart";
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           },
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) => state.status.switchStatus(
-              onPure: () => context.read<HomeBloc>().add(GetForecast()),
+              onPure: () => context.read<HomeBloc>().add(Init()),
               onSuccess: () => _successContent(state.forecastModel!),
               onLoading: () => Center(child: CircularProgressIndicator()),
               onFail: () => Text('${state.message}'),
@@ -116,7 +117,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             AppUtils.kGap16,
-            WHourlyReport(hours: model.hourly!,),
+            WHourlyReport(hours: model.hourly!),
+            AppUtils.kGap16,
+            WDailyReport(days: model.daily!),
           ],
         ),
       ],

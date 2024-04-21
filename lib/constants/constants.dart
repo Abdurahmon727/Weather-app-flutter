@@ -16,6 +16,7 @@ sealed class AppKeys {
   static const String email = "email";
   static const String password = "password";
   static const String themeMode = "theme_mode";
+  static const String city = "city";
 }
 
 sealed class Urls {
