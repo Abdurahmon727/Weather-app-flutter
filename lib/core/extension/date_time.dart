@@ -3,24 +3,15 @@ import 'dart:core';
 
 import 'package:intl/intl.dart';
 
-extension DateTime on int {
+extension DateTime on num {
   String toHour() {
-    var now = core.DateTime.now();
-    var format = DateFormat('HH:mm a');
-    var date = core. DateTime.fromMicrosecondsSinceEpoch(this * 1000);
-    var diff = date.difference(now);
-    var time = '';
+    final dt = this.toInt();
 
-    if (diff.inSeconds <= 0 || diff.inSeconds > 0 && diff.inMinutes == 0 || diff.inMinutes > 0 && diff.inHours == 0 || diff.inHours > 0 && diff.inDays == 0) {
-      time = format.format(date);
-    } else {
-      if (diff.inDays == 1) {
-        time = diff.inDays.toString() + 'DAY AGO';
-      } else {
-        time = diff.inDays.toString() + 'DAYS AGO';
-      }
-    }
+    // Create a DateTime object from the Unix timestamp
+    final dateTime = core.DateTime.fromMicrosecondsSinceEpoch(dt * 1000000);
 
-    return time;
+    // Use DateFormat to format the time in HH:mm (24-hour format)
+    final formatter = DateFormat('HH:mm');
+    return formatter.format(dateTime);
   }
 }

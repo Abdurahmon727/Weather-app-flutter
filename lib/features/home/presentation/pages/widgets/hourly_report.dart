@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/core/extension/date_time.dart';
+import 'package:flutter_clean_architecture/core/extension/extension.dart';
 import 'package:flutter_clean_architecture/core/utils/utils.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart';
 
@@ -20,7 +22,7 @@ class WHourlyReport extends StatelessWidget {
           ),
           AppUtils.kGap8,
           SizedBox(
-            height: 120,
+            height: 135,
             child: ListView.separated(
               padding: AppUtils.kPaddingHor16,
               scrollDirection: Axis.horizontal,
@@ -41,8 +43,16 @@ class WHourlyReport extends StatelessWidget {
                       imageUrl: Urls.image.replaceFirst(
                           '{id}', hours[index].weather?.first.icon ?? ''),
                     ),
-                    Text(hours[index].weather?.first.main ?? ''),
+                    Text(
+                      hours[index].weather?.first.main ?? '',
+                      style: context.textStyle.regularCallout,
+                    ),
                     Text('${hours[index].temp ?? ''}\u00B0'),
+                    AppUtils.kSpacer,
+                    Text(
+                      '${hours[index].dt!.toHour()}',
+                      style: context.textStyle.regularBody,
+                    )
                   ],
                 ),
               ),
