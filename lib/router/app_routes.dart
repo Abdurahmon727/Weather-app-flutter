@@ -1,4 +1,4 @@
-import "package:chuck_interceptor/chuck.dart";
+// import "package:chuck_interceptor/chuck.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_clean_architecture/core/connectivity/network_info.dart";
@@ -22,7 +22,7 @@ final PackageInfo packageInfo = sl<PackageInfo>();
 final NetworkInfo networkInfo = sl<NetworkInfo>();
 final LocalSource localSource = sl<LocalSource>();
 
-final Chuck chuck = Chuck(navigatorKey: rootNavigatorKey);
+// final Chuck chuck = Chuck(navigatorKey: rootNavigatorKey);
 
 final GoRouter router = GoRouter(
   navigatorKey: rootNavigatorKey,

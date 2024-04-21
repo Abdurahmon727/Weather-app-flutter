@@ -80,7 +80,7 @@ Future<void> init() async {
 
   sl<Dio>().interceptors.addAll(
     <Interceptor>[
-      chuck.getDioInterceptor(),
+      // chuck.getDioInterceptor(),
       RetryInterceptor(
         dio: sl<Dio>(),
         retries: 1,

@@ -22,47 +22,47 @@ dependencies:
   # hive
   hive: ^2.2.3
   # path
-  path_provider: ^2.1.2
+#  path_provider: ^2.1.2
   # rest api
   dio: ^5.4.2+1
   dio_retry_plus: ^2.0.6
   # chuck
-  chuck_interceptor: ^2.1.2
+#  chuck_interceptor: ^2.1.2
   # box
   gap: ^3.0.1
   # router
   go_router: ^13.2.2
   # svg
-  flutter_svg: ^2.0.10+1
+#  flutter_svg: ^2.0.10+1
   # url launchers
-  url_launcher: ^6.2.5
+#  url_launcher: ^6.2.5
   # otp autofill
-  otp_autofill_plus: ^1.0.3
+#  otp_autofill_plus: ^1.0.3
   # sms autofill
-  pin_input_text_field: ^4.5.1
+#  pin_input_text_field: ^4.5.1
   # package info
   package_info_plus: ^6.0.0
   # cached network image
   cached_network_image: ^3.3.1
   # firebase
-  firebase_core: ^2.28.0
-  firebase_analytics: ^10.10.0
-  firebase_messaging: ^14.8.0
-  firebase_remote_config: ^4.4.0
+#  firebase_core: ^2.28.0
+#  firebase_analytics: ^10.10.0
+#  firebase_messaging: ^14.8.0
+#  firebase_remote_config: ^4.4.0
   # local notification
-  flutter_local_notifications: ^17.0.0
+#  flutter_local_notifications: ^17.0.0
   # location
   geolocator: ^11.0.0
 
 
 
 dev_dependencies:
-  bloc_test: ^9.1.7
-  build_runner: ^2.4.9
-  flutter_lints: ^3.0.2
+#  bloc_test: ^9.1.7
+#  build_runner: ^2.4.9
+#  flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
-  mockito: ^5.4.4
+#  mockito: ^5.4.4
 
 flutter:
 
