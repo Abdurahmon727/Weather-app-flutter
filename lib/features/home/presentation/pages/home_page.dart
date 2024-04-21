@@ -93,6 +93,16 @@ class _HomePageState extends State<HomePage> {
                           context.tr('feels_like_%d').replaceFirst(
                               '%d', '${model.current?.feelsLike}\u00B0'),
                           style: context.textStyle.bodyCallout,
+                        ),
+                        Text(
+                          context.tr('humidity_%d').replaceFirst(
+                              '%d', '${model.current?.humidity}\u00B0'),
+                          style: context.textStyle.bodyCallout,
+                        ),
+                        Text(
+                          context.tr('wind_speed_%d').replaceFirst(
+                              '%d', '${model.current?.windSpeed}'),
+                          style: context.textStyle.bodyCallout,
                         )
                       ],
                     ),

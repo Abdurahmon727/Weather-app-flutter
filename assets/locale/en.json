@@ -2,8 +2,11 @@
   "city": "City",
   "hourly_report": "Hourly report",
   "daily_report": "Daily report",
+  "weekly_report": "Weekly report",
   "feels_like_%d": "Feels like %d",
   "choose_language": "Choose language",
   "app_language": "App language",
-  "theme": "App theme"
+  "theme": "App theme",
+  "humidity_%d": "Humidity %d",
+  "wind_speed_%d": "Wind speed %d km/h"
 }

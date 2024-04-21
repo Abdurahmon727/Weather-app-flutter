@@ -2,8 +2,11 @@
   "city": "Shahar",
   "hourly_report": "Soatlik hisobot",
   "daily_report": "Kunlik hisobot",
+  "weekly_report": "Haftalik hisobot",
   "feels_like_%d": "%d kabi tuyiladi",
   "choose_language": "Til tanlang",
   "app_language": "Dastur tili",
-  "theme": "Dastur mavzusi"
+  "theme": "Dastur mavzusi",
+  "humidity_%d": "Namlik %d",
+  "wind_speed_%d": "Shamol tezligi %d km/s"
 }

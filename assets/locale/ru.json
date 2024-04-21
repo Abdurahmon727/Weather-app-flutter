@@ -2,8 +2,11 @@
   "city": "Город",
   "hourly_report": "Ежечасный отчет",
   "daily_report": "Ежедневный отчет",
+  "weekly_report": "Еженедельный отчет",
   "feels_like_%d": "По ощущениям %d",
   "choose_language": "Выберите язык",
   "app_language": "Язык приложения",
-  "theme": "Тема приложения"
+  "theme": "Тема приложения",
+  "humidity_%d": "Влажность %d",
+  "wind_speed_%d": "Скорость ветра %d км/ч"
 }
