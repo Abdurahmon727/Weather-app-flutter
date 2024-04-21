@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/core/utils/utils.dart';
 import 'package:flutter_clean_architecture/core/widgets/bottom_sheet/custom_bottom_sheet.dart';
-import 'package:flutter_clean_architecture/features/home/presentation/pages/widgets/language_bottom_sheet.dart';
 import 'package:go_router/go_router.dart';
+
+import 'language_bottom_sheet.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -19,9 +20,9 @@ class HomeDrawer extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     context.pop();
-                    customModalBottomSheet(
+                    customModalBottomSheet<void>(
                       context: context,
-                      builder: (context, controller) => LanguageBottomSheet(),
+                      builder: (ctx, _) => const LanguageBottomSheet(),
                     );
                   },
                   icon: Icon(Icons.sunny),

@@ -2,5 +2,6 @@
   "city": "Shahar",
   "hourly_report": "Soatlik hisobot",
   "daily_report": "Kunlik hisobot",
-  "feels_like_%d": "%d kabi tuyiladi"
+  "feels_like_%d": "%d kabi tuyiladi",
+  "choose_language": "Til tanlang"
 }

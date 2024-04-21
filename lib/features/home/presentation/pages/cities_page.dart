@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/domain/status.dart';
 import 'package:flutter_clean_architecture/core/extension/extension.dart';
 import 'package:flutter_clean_architecture/features/home/data/model/city_model.dart';
-import 'package:flutter_clean_architecture/features/home/presentation/pages/widgets/w_city.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/inputs/custom_text_field.dart';
 import '../bloc/cities/cities_bloc.dart';
 import '../bloc/home/home_bloc.dart';
+import '../widgets/city.dart';
 
 class CitiesPage extends StatelessWidget {
   const CitiesPage({super.key});

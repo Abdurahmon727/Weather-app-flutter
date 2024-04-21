@@ -48,6 +48,7 @@ Future<T?> customModalBottomSheet<T>({
       context: context,
       isScrollControlled: false,
       enableDrag: enableDrag,
+      backgroundColor: context.colorScheme.background,
       constraints: BoxConstraints(
         maxHeight: context.kSize.height * 0.9,
         minHeight: context.kSize.height * 0.2,

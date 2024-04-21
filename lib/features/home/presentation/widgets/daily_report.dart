@@ -5,7 +5,7 @@ import 'package:flutter_clean_architecture/core/extension/extension.dart';
 import '../../../../../constants/constants.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
-import '../../../data/model/current_and_forecast_model.dart';
+import '../../data/model/current_and_forecast_model.dart';
 
 class WDailyReport extends StatelessWidget {
   const WDailyReport({super.key, required this.days});

@@ -7,13 +7,13 @@ import "package:flutter_clean_architecture/core/utils/utils.dart";
 import "package:flutter_clean_architecture/core/widgets/custom_cached_network_image.dart";
 import "package:flutter_clean_architecture/core/widgets/inputs/custom_text_field.dart";
 import "package:flutter_clean_architecture/features/home/data/model/current_and_forecast_model.dart";
-import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/daily_report.dart";
-import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/home_drawer.dart";
-import "package:flutter_clean_architecture/features/home/presentation/pages/widgets/hourly_report.dart";
 import "package:flutter_clean_architecture/router/app_routes.dart";
 import "package:go_router/go_router.dart";
 
 import "../bloc/home/home_bloc.dart";
+import "../widgets/daily_report.dart";
+import "../widgets/home_drawer.dart";
+import "../widgets/hourly_report.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               onPure: () => context.read<HomeBloc>().add(Init()),
               onSuccess: () => _successContent(state.forecastModel!),
               onLoading: () => Center(child: CircularProgressIndicator()),
-              onFail: () => Text('${state.message}'),
+              onFail: () => Center(child: Text('${state.message}')),
             ),
           ),
         ),

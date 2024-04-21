@@ -2,5 +2,6 @@
   "city": "Город",
   "hourly_report": "Ежечасный отчет",
   "daily_report": "Ежедневный отчет",
-  "feels_like_%d": "По ощущениям %d"
+  "feels_like_%d": "По ощущениям %d",
+  "choose_language": "Выберите язык"
 }

@@ -18,7 +18,9 @@ class WHourlyReport extends StatelessWidget {
         children: [
           Padding(
             padding: AppUtils.kPaddingHor16,
-            child: Text(context.tr('hourly_report')),
+            child: Text(
+              context.tr('hourly_report'),
+            ),
           ),
           AppUtils.kGap8,
           SizedBox(
