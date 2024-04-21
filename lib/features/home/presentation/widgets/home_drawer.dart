@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/core/extension/extension.dart';
 import 'package:flutter_clean_architecture/core/utils/utils.dart';
 import 'package:flutter_clean_architecture/core/widgets/bottom_sheet/custom_bottom_sheet.dart';
+import 'package:flutter_clean_architecture/router/app_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -26,23 +27,29 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 
   @override
-  Widget build(BuildContext context) => Drawer(
+  Widget build(BuildContext context) =>
+      Drawer(
         child: SafeArea(
           child: Padding(
             padding: AppUtils.kPaddingHor16Ver4,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    context.pop();
-                  },
-                  child: ListTile(
-                    title: Text(context.tr('theme')),
-                    trailing: Icon(Icons.sunny),
-                  ),
-                ),
-                AppUtils.kGap8,
+                // GestureDetector(
+                //   onTap: () async {
+                //     final isLight =
+                //         context.theme.brightness == Brightness.light;
+                //     final newMode = isLight ? ThemeMode.dark : ThemeMode.light;
+                //     await localSource.setThemeMode(newMode);
+                //     context.setThemeMode(
+                //         newMode);
+                //   },
+                //   child: ListTile(
+                //     title: Text(context.tr('theme')),
+                //     trailing: Icon(Icons.sunny),
+                //   ),
+                // ),
+                // AppUtils.kGap8,
                 GestureDetector(
                   onTap: () {
                     context.pop();
